@@ -17,12 +17,9 @@ app.use((req, res, next) => {
 });
 
 app.get("/card", (req, res) => {
-  res.send(
-    mtg.card
-      .all({ types: "instant", colors: "red,white", set: "LCI" })
-      .on("data", function (card) {
-        console.log(card.name);
-      })
-  );
+  console.log("Entering /card");
+  mtg.card.find(3).then((result) => {
+    console.log(result.card.name); // "Black Lotus"
+  });
 });
 app.listen(3000, () => console.log("Example app is listening on port 3000."));
